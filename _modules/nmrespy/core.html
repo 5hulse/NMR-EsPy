@@ -82,7 +82,7 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    source : &#39;bruker_fid&#39;, &#39;bruker_pdata&#39;, &#39;synthetic&#39;</span>
+<span class="sd">    source : {&#39;bruker_fid&#39;, &#39;bruker_pdata&#39;, &#39;synthetic&#39;}</span>
 <span class="sd">        The type of data imported. `&#39;bruker_fid&#39;` indicates the data is</span>
 <span class="sd">        derived from a FID file (`fid` for 1D data, `ser` for 2D data).</span>
 <span class="sd">        `&#39;bruker_pdata&#39;` indicates the data is derived from files found</span>
@@ -929,7 +929,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        region: [[int, int]], [[int, int], [int, int]], [[float, float]] or</span>
+<span class="sd">        region: [[int, int]], [[int, int], [int, int]], [[float, float]] or\</span>
 <span class="sd">        [[float, float], [float, float]]</span>
 <span class="sd">            Cut-off points of the spectral region to consider.</span>
 <span class="sd">            If the signal is 1D, this should be of the form `[[a,b]]`</span>
@@ -940,7 +940,7 @@
 <span class="sd">            dimension 2. The ordering of the bounds in each dimension is</span>
 <span class="sd">            not important.</span>
 
-<span class="sd">        noise_region: [[int, int]], [[int, int], [int, int]],</span>
+<span class="sd">        noise_region: [[int, int]], [[int, int], [int, int]],\</span>
 <span class="sd">        [[float, float]] or [[float, float], [float, float]]</span>
 <span class="sd">            Cut-off points of the spectral region to extract the spectrum&#39;s</span>
 <span class="sd">            noise variance. This should have the same structure as `region`.</span>

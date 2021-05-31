@@ -81,7 +81,7 @@ to use one of these.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<em>'bruker_fid'</em><em>, </em><em>'bruker_pdata'</em><em>, </em><em>'synthetic'</em>) – The type of data imported. <cite>‘bruker_fid’</cite> indicates the data is
+<li><p><strong>source</strong> (<em>{'bruker_fid'</em><em>, </em><em>'bruker_pdata'</em><em>, </em><em>'synthetic'}</em>) – The type of data imported. <cite>‘bruker_fid’</cite> indicates the data is
 derived from a FID file (<cite>fid</cite> for 1D data, <cite>ser</cite> for 2D data).
 <cite>‘bruker_pdata’</cite> indicates the data is derived from files found
 in a <cite>pdata</cite> directory (<cite>1r</cite> for 1D data; <cite>2rr</cite> for 2D data).
@@ -194,8 +194,7 @@ even if only one oscillator is being added:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>region</strong> (<em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>] </em><em>or</em>) – </p></li>
-<li><p><strong>[</strong><strong>[</strong><strong>float</strong> – Cut-off points of the spectral region to consider.
+<li><p><strong>region</strong> (<em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>] or        </em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>]</em>) – Cut-off points of the spectral region to consider.
 If the signal is 1D, this should be of the form <cite>[[a,b]]</cite>
 where <cite>a</cite> and <cite>b</cite> are the boundaries.
 If the signal is 2D, this should be of the form
@@ -203,40 +202,7 @@ If the signal is 2D, this should be of the form
 dimension 1, and <cite>c</cite> and <cite>d</cite> are the boundaries in
 dimension 2. The ordering of the bounds in each dimension is
 not important.</p></li>
-<li><p><strong>float</strong><strong>]</strong> – Cut-off points of the spectral region to consider.
-If the signal is 1D, this should be of the form <cite>[[a,b]]</cite>
-where <cite>a</cite> and <cite>b</cite> are the boundaries.
-If the signal is 2D, this should be of the form
-<cite>[[a,b], [c,d]]</cite> where <cite>a</cite> and <cite>b</cite> are the boundaries in
-dimension 1, and <cite>c</cite> and <cite>d</cite> are the boundaries in
-dimension 2. The ordering of the bounds in each dimension is
-not important.</p></li>
-<li><p><strong>[</strong><strong>float</strong> – Cut-off points of the spectral region to consider.
-If the signal is 1D, this should be of the form <cite>[[a,b]]</cite>
-where <cite>a</cite> and <cite>b</cite> are the boundaries.
-If the signal is 2D, this should be of the form
-<cite>[[a,b], [c,d]]</cite> where <cite>a</cite> and <cite>b</cite> are the boundaries in
-dimension 1, and <cite>c</cite> and <cite>d</cite> are the boundaries in
-dimension 2. The ordering of the bounds in each dimension is
-not important.</p></li>
-<li><p><strong>float</strong><strong>]</strong><strong>]</strong> – Cut-off points of the spectral region to consider.
-If the signal is 1D, this should be of the form <cite>[[a,b]]</cite>
-where <cite>a</cite> and <cite>b</cite> are the boundaries.
-If the signal is 2D, this should be of the form
-<cite>[[a,b], [c,d]]</cite> where <cite>a</cite> and <cite>b</cite> are the boundaries in
-dimension 1, and <cite>c</cite> and <cite>d</cite> are the boundaries in
-dimension 2. The ordering of the bounds in each dimension is
-not important.</p></li>
-<li><p><strong>noise_region</strong> (<em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>,</em>) – </p></li>
-<li><p><strong>[</strong><strong>[</strong><strong>float</strong> – Cut-off points of the spectral region to extract the spectrum’s
-noise variance. This should have the same structure as <cite>region</cite>.</p></li>
-<li><p><strong>or</strong><strong> [</strong><strong>[</strong><strong>float</strong> (<em>float</em><em>]</em><em>]</em>) – Cut-off points of the spectral region to extract the spectrum’s
-noise variance. This should have the same structure as <cite>region</cite>.</p></li>
-<li><p><strong>float</strong><strong>]</strong> – Cut-off points of the spectral region to extract the spectrum’s
-noise variance. This should have the same structure as <cite>region</cite>.</p></li>
-<li><p><strong>[</strong><strong>float</strong> – Cut-off points of the spectral region to extract the spectrum’s
-noise variance. This should have the same structure as <cite>region</cite>.</p></li>
-<li><p><strong>float</strong><strong>]</strong><strong>]</strong> – Cut-off points of the spectral region to extract the spectrum’s
+<li><p><strong>noise_region</strong> (<em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>[</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em><em>,        </em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>] or </em><em>[</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>]</em>) – Cut-off points of the spectral region to extract the spectrum’s
 noise variance. This should have the same structure as <cite>region</cite>.</p></li>
 <li><p><strong>cut</strong> (<em>bool</em><em>, </em><em>default: True</em>) – If <cite>False</cite>, the filtered signal will comprise the same number of
 data points as the original data. If <cite>True</cite>, prior to inverse
