@@ -146,6 +146,12 @@ data’s noise variance). In this example, I will set this region to be -0.15 to
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">frequency_filter</span><span class="p">([[</span><span class="mf">5.54</span><span class="p">,</span> <span class="mf">5.42</span><span class="p">]],</span> <span class="p">[[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">]])</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Be aware of the use of two sets of parentheses around the regions specified.
+This may seem odd, but a nested list is required to ensure compatibility
+with 2D data as well.</p>
+</div>
 </section>
 <section id="estimating-the-signal-parameters">
 <h2>Estimating the Signal Parameters<a class="headerlink" href="#estimating-the-signal-parameters" title="Permalink to this headline">¶</a></h2>
@@ -280,7 +286,7 @@ See <a class="reference internal" href="#summary">Summary</a> below for an examp
 </section>
 <section id="pickling-estimator-instances">
 <h3>Pickling Estimator Instances<a class="headerlink" href="#pickling-estimator-instances" title="Permalink to this headline">¶</a></h3>
-<p>The estimator instance can be serialised, and saved to a binary file using
+<p>The estimator instance can be serialised, and saved to a byte stream using
 Python’s <a class="reference external" href="https://docs.python.org/3/library/pickle.html">pickle</a> module,
 with <a class="reference internal" href="references/core.html#nmrespy.core.Estimator.to_pickle" title="nmrespy.core.Estimator.to_pickle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_pickle()</span></code></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;pickle_example&quot;</span><span class="p">)</span>
@@ -363,8 +369,9 @@ Note that further customisation has been applied to the plot to give it an
 <li><p><a class="reference download internal" download="" href="_downloads/5d8e1d4583f68e53627ad623da9172f9/nmrespy_example.py"><code class="xref download docutils literal notranslate"><span class="pre">nmrespy_example.py</span></code></a></p></li>
 <li><p><a class="reference download internal" download="" href="_downloads/c9484536ea090f7ceb0581a47898bade/plot_example_edited.png"><code class="xref download docutils literal notranslate"><span class="pre">plot_example_edited.png</span></code></a></p></li>
 </ul>
-<p>More features are provided by <a class="reference internal" href="references/core.html#nmrespy.core.Estimator" title="nmrespy.core.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> beyond
-what is described on this page. Look at the class’s docs for details.</p>
+<p>More features are provided by the <a class="reference internal" href="references/core.html#nmrespy.core.Estimator" title="nmrespy.core.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> beyond
+what is described on this page, but this gives an overview of the primary
+functionality.</p>
 </section>
 </section>
 

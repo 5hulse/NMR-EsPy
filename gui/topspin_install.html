@@ -183,19 +183,21 @@ PDF result files, you will also have to specify the path to the
 is set to <code class="docutils literal notranslate"><span class="pre">None</span></code> by default. To find this path, load a Python interpreter/
 write a Python script with the following lines:</p>
 <ul>
-<li><p><em>Windows</em></p>
+<li><p><em>UNIX</em></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span> <span class="k">as</span> <span class="n">co</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">exe</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">co</span><span class="p">(</span><span class="s2">&quot;where pdflatex&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exe</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="s2">&quot;which pdflatex&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exe</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">exe</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="go">&quot;C:\\texlive\\2020\\bin\\win32\\pdflatex.exe&quot;</span>
+<span class="go">&quot;/usr/bin/pdflatex&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p><em>UNIX</em></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span> <span class="k">as</span> <span class="n">co</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">exe</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">co</span><span class="p">(</span><span class="s2">&quot;which pdflatex&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+<li><p><em>Windows</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exe</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="s2">&quot;where pdflatex&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">exe</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">exe</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\\\</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="si">{</span><span class="n">exe</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="go">&quot;/usr/bin/pdflatex&quot;</span>
+<span class="go">&quot;C:\\texlive\\2020\\bin\\win32\\pdflatex.exe&quot;</span>
 </pre></div>
 </div>
 </li>
