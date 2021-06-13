@@ -84,9 +84,9 @@ sure you “pickle” the estimator (see the section <em>Saving the Result</em> 
 <a class="reference internal" href="../gui/usage/result.html"><span class="doc">this page</span></a>).</p>
 <p>You will now have to create a Python script, which will perform the following:</p>
 <ul class="simple">
-<li><p>Load the estimator (an instance of the <a class="reference internal" href="../references/core.html#nmrespy.core.Estimator" title="nmrespy.core.Estimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code></a> class).</p></li>
+<li><p>Load the estimator (an instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Estimator</span></code> class).</p></li>
 <li><p>Generate a figure of the estimator using the
-<a class="reference internal" href="../references/core.html#nmrespy.core.Estimator.plot_result" title="nmrespy.core.Estimator.plot_result"><code class="xref py py-class docutils literal notranslate"><span class="pre">plot_result</span></code></a> method.</p></li>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">plot_result</span></code> method.</p></li>
 <li><p>Customise the properties of the figure.</p></li>
 <li><p>Save the figure.</p></li>
 </ul>
@@ -111,7 +111,7 @@ file. <strong>DO NOT INCLUDE THE</strong> <code class="docutils literal notransl
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">plot_result</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Giving the <a class="reference internal" href="../references/core.html#nmrespy.core.Estimator.plot_result" title="nmrespy.core.Estimator.plot_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot_result()</span></code></a> method no arguments
+<p>Giving the <code class="xref py py-meth docutils literal notranslate"><span class="pre">plot_result()</span></code> method no arguments
 will produce a figure which is identical to the one produced by using the GUI.
 There are some things that you can customise by providing arguments to the
 method. Notable things that can be tweaked are:</p>
@@ -131,7 +131,7 @@ these to not be the default colours.</p></li>
 <p>Have a look at the <a class="reference internal" href="../references/plot.html#nmrespy.plot.plot_result" title="nmrespy.plot.plot_result"><code class="xref py py-func docutils literal notranslate"><span class="pre">nmrespy.plot.plot_result()</span></code></a> function for a
 description of the acceptable arguments. Only the following arguments should
 be used (the others are automatically determined internally by the
-<a class="reference internal" href="../references/core.html#nmrespy.core.Estimator.plot_result" title="nmrespy.core.Estimator.plot_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nmrespy.core.Estimator.plot_result()</span></code></a> method):</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">nmrespy.core.Estimator.plot_result()</span></code> method):</p>
 <ul class="simple">
 <li><p><cite>shifts_unit</cite></p></li>
 <li><p><cite>plot_residual</cite></p></li>
@@ -152,7 +152,7 @@ be used (the others are automatically determined internally by the
 by editing <code class="docutils literal notranslate"><span class="pre">plot</span></code>.</p>
 <section id="general-guidance">
 <h3>General Guidance<a class="headerlink" href="#general-guidance" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="../references/core.html#nmrespy.core.Estimator.plot_result" title="nmrespy.core.Estimator.plot_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">nmrespy.core.Estimator.plot_result()</span></code></a> produces an instance of the
+<p><code class="xref py py-meth docutils literal notranslate"><span class="pre">nmrespy.core.Estimator.plot_result()</span></code> produces an instance of the
 <a class="reference internal" href="../references/plot.html#nmrespy.plot.NmrespyPlot" title="nmrespy.plot.NmrespyPlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">nmrespy.plot.NmrespyPlot</span></code></a> class. This possesses four notable
 attributes:</p>
 <ul class="simple">
