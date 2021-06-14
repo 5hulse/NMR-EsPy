@@ -67,7 +67,7 @@
 <p>Computation of signal estimates using the Matrix Pencil Method.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nmrespy.mpm.MatrixPencil">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nmrespy.mpm.</span></span><span class="sig-name descname"><span class="pre">MatrixPencil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fprint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nmrespy.mpm.</span></span><span class="sig-name descname"><span class="pre">MatrixPencil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fprint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class for performing the Matrix Pencil Method with the option of model
 order selection using the Minimum Description Length (MDL) <a class="footnote-reference brackets" href="#id6" id="id1">1</a>. Supports
 analysis of one-dimensional <a class="footnote-reference brackets" href="#id7" id="id2">2</a> <a class="footnote-reference brackets" href="#id8" id="id3">3</a> or two-dimensional data <a class="footnote-reference brackets" href="#id9" id="id4">4</a> <a class="footnote-reference brackets" href="#id10" id="id5">5</a></p>
@@ -84,8 +84,6 @@ to ppm will be possible!</p></li>
 be estimated using the MDL.</p></li>
 <li><p><strong>fprint</strong> (<em>bool</em><em>, </em><em>default: True</em>) – Flag specifiying whether to print infomation to the terminal as
 the method runs.</p></li>
-<li><p><strong>start_point</strong> (<em>int</em><em>, </em><em>default: 0</em>) – The first timepoint sampled, in units of
-<img class="math" src="../_images/math/73c0292a780912fed0f96bc618a2680f51829349.png" alt="\Delta t = 1 / f_{\mathrm{sw}}"/></p></li>
 </ul>
 </dd>
 </dl>
@@ -120,8 +118,32 @@ using modified matrix pencil method”. In: IEEE Trans. Signal Process.
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nmrespy.mpm.MatrixPencil.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fprint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil.__init__" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fprint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks validity of inputs, and if valid, calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">_mpm()</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nmrespy.mpm.MatrixPencil._generate_params">
+<span class="sig-name descname"><span class="pre">_generate_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poles</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil._generate_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil._generate_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts complex amplitude and signal pole arrays into a
+parameter array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<em>numpy.ndarray</em>) – Complex amplitude array, of shape``(self.M,)``</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>poles: numpy.ndarray</dt><dd><p>Signal pole array, of shape <code class="docutils literal notranslate"><span class="pre">(self.dim,</span> <span class="pre">self.M)</span></code></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>result</strong> – Parameter array, of shape <code class="docutils literal notranslate"><span class="pre">(self.M,</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">self.dim</span> <span class="pre">+</span> <span class="pre">2)</span></code></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>numpy.ndarray</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -134,6 +156,28 @@ using modified matrix pencil method”. In: IEEE Trans. Signal Process.
 <dt class="sig sig-object py" id="nmrespy.mpm.MatrixPencil._mpm_2d">
 <span class="sig-name descname"><span class="pre">_mpm_2d</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil._mpm_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil._mpm_2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs 2-dimensional Modified Matrix Enhanced Pencil Method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nmrespy.mpm.MatrixPencil._remove_negative_damping">
+<span class="sig-name descname"><span class="pre">_remove_negative_damping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/nmrespy/mpm.html#MatrixPencil._remove_negative_damping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nmrespy.mpm.MatrixPencil._remove_negative_damping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines whether any oscillators possess negative amplitudes,
+and remove these from the parameter array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>numpy.ndarray</em>) – Parameter array, with shape <code class="docutils literal notranslate"><span class="pre">(self.M,</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">self.dim</span> <span class="pre">+</span> <span class="pre">2)</span></code></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>ud_params</strong> (<em>numpy.ndarray</em>) – Updated parameter array, with negative damping oscillators removed,
+with shape <code class="docutils literal notranslate"><span class="pre">(M_new,</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">self.dim</span> <span class="pre">+</span> <span class="pre">2)</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">M_new</span> <span class="pre">&lt;=</span> <span class="pre">self.M</span></code>.</p></li>
+<li><p><strong>M</strong> (<em>int</em>) – Number of oscillators after removal of negative damping
+oscillators.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

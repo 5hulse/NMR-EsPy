@@ -96,10 +96,6 @@
 <span class="sd">        Flag specifiying whether to print infomation to the terminal as</span>
 <span class="sd">        the method runs.</span>
 
-<span class="sd">    start_point : int, default: 0</span>
-<span class="sd">        The first timepoint sampled, in units of</span>
-<span class="sd">        :math:`\\Delta t = 1 / f_{\\mathrm{sw}}`</span>
-
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 <span class="sd">    .. [#] M. Wax, T. Kailath, Detection of signals by information theoretic</span>
@@ -124,11 +120,7 @@
 <span class="sd">       55.2 (2007), pp. 718–724.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">start_txt</span> <span class="o">=</span> <span class="s1">&#39;MATRIX PENCIL METHOD STARTED&#39;</span>
-    <span class="n">end_txt</span> <span class="o">=</span> <span class="s1">&#39;MATRIX PENCIL METHOD COMPLETE&#39;</span>
-
-<div class="viewcode-block" id="MatrixPencil.__init__"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fprint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">start_point</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="MatrixPencil.__init__"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fprint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks validity of inputs, and if valid, calls :py:meth:`_mpm`&quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -149,7 +141,6 @@
             <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">,</span> <span class="s1">&#39;float_list&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;positive_int_or_zero&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">fprint</span><span class="p">,</span> <span class="s1">&#39;fprint&#39;</span><span class="p">,</span> <span class="s1">&#39;bool&#39;</span><span class="p">),</span>
-            <span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="s1">&#39;start_point&#39;</span><span class="p">,</span> <span class="s1">&#39;positive_int_or_zero&#39;</span><span class="p">),</span>
         <span class="p">]</span>
 
         <span class="k">if</span> <span class="n">sfo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -164,7 +155,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sfo</span> <span class="o">=</span> <span class="n">sfo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">M</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span> <span class="o">=</span> <span class="n">fprint</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start_point</span> <span class="o">=</span> <span class="n">start_point</span>
 
         <span class="k">if</span> <span class="n">sfo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="n">FrequencyConverter</span><span class="p">(</span>
@@ -240,7 +230,7 @@
             <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">InvalidUnitError</span><span class="p">(</span><span class="s1">&#39;hz&#39;</span><span class="p">,</span> <span class="s1">&#39;ppm&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MatrixPencil._mpm_1d"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil._mpm_1d">[docs]</a>    <span class="nd">@timer</span>
-    <span class="nd">@start_end_wrapper</span><span class="p">(</span><span class="n">start_txt</span><span class="p">,</span> <span class="n">end_txt</span><span class="p">)</span>
+    <span class="nd">@start_end_wrapper</span><span class="p">(</span><span class="s1">&#39;MPM STARTED&#39;</span><span class="p">,</span> <span class="s1">&#39;MPM COMPLETE&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_mpm_1d</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Performs 1-dimensional Matrix Pencil Method&quot;&quot;&quot;</span>
 
@@ -279,7 +269,7 @@
 
         <span class="c1"># Compute the MDL in order to estimate the number of oscillators</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Determining number of oscillators...&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Computing number of oscillators...&#39;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
@@ -304,58 +294,31 @@
 
         <span class="c1"># Determine signal poles</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Determining signal poles...&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Computing signal poles...&#39;</span><span class="p">)</span>
 
         <span class="n">Vm</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">]</span>  <span class="c1"># Retain M first right singular vectors</span>
         <span class="n">V1</span> <span class="o">=</span> <span class="n">Vm</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># Remove last column</span>
         <span class="n">V2</span> <span class="o">=</span> <span class="n">Vm</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># Remove first column</span>
 
         <span class="c1"># Determine first M signal poles (others should be 0)</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">V2</span> <span class="o">@</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">V1</span><span class="p">))[</span><span class="mi">0</span><span class="p">][:</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">]</span>
+        <span class="n">poles</span> <span class="o">=</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">V2</span> <span class="o">@</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">V1</span><span class="p">))[</span><span class="mi">0</span><span class="p">][:</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">]</span>
 
         <span class="c1"># Compute complex amplitudes</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Determining complex amplitudes...&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Computing complex amplitudes...&#39;</span><span class="p">)</span>
 
         <span class="c1"># Pseudoinverse of Vandermonde matrix of poles multiplied by</span>
         <span class="c1"># vector of complex amplitudes</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span>
-                <span class="n">z</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_point</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_point</span> <span class="o">+</span> <span class="n">N</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
         <span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">normed_data</span>
 
-        <span class="c1"># Extract amplitudes, phases, frequencies and damping factors</span>
-        <span class="n">amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span>
-        <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
-        <span class="n">freq</span> <span class="o">=</span> \
-            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="p">))</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">damp</span> <span class="o">=</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
-
-        <span class="c1"># Collate into (M x 4) array of parameters</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">amp</span><span class="p">,</span> <span class="n">phase</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">damp</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
-        <span class="c1"># Order oscillators by frequency</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])]</span>
-
-        <span class="c1"># Check for oscillators with negative damping</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Checking for oscillators with negative damping...&#39;</span><span class="p">)</span>
-
-        <span class="n">m_init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="c1"># Indices of oscillators with negative damping factors</span>
-        <span class="n">neg_damp_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="n">neg_damp_idx</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">&lt;</span> <span class="n">m_init</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="si">{</span><span class="n">cols</span><span class="o">.</span><span class="n">OR</span><span class="si">}</span><span class="s1">WARNING: Oscillations with negative damping</span><span class="se">\n</span><span class="s1">&#39;</span>
-                  <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">factors detected. These have been deleted.</span><span class="se">\n</span><span class="s1">&#39;</span>
-                  <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">Corrected number of oscillations: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="si">}{</span><span class="n">cols</span><span class="o">.</span><span class="n">END</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">None found&#39;</span><span class="p">)</span></div>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_params</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">poles</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">)))</span>
+        <span class="n">params</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">norm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_negative_damping</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MatrixPencil._mpm_2d"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil._mpm_2d">[docs]</a>    <span class="nd">@timer</span>
+    <span class="nd">@start_end_wrapper</span><span class="p">(</span><span class="s1">&#39;MMEMP STARTED&#39;</span><span class="p">,</span> <span class="s1">&#39;MMEMP COMPLETE&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">_mpm_2d</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Performs 2-dimensional Modified Matrix Enhanced Pencil Method.&quot;&quot;&quot;</span>
 
@@ -368,6 +331,8 @@
 
         <span class="c1"># Pencil parameters</span>
         <span class="n">K</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">int</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="n">N1</span><span class="p">,</span> <span class="n">N2</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;--&gt; Pencil parameters: </span><span class="si">{</span><span class="n">K</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1"># TODO: MDL for 2D</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -392,12 +357,26 @@
                 <span class="p">(</span><span class="n">Xe</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">N2</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):(</span><span class="n">k</span> <span class="o">+</span> <span class="n">N1</span> <span class="o">-</span> <span class="n">K</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">N2</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
             <span class="p">)</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Enhanced Block Hankel matrix constructed:&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">Size: </span><span class="si">{</span><span class="n">Xe</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> x </span><span class="si">{</span><span class="n">Xe</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">gibibytes</span> <span class="o">=</span> <span class="n">Xe</span><span class="o">.</span><span class="n">nbytes</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">30</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">gibibytes</span> <span class="o">&gt;=</span> <span class="mf">0.1</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">Memory: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gibibytes</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">GiB&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">Memory: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">gibibytes</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s1">MiB&#39;</span><span class="p">)</span>
+
         <span class="c1"># convert Xe to sparse matrix</span>
         <span class="n">sparse_Xe</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">Xe</span><span class="p">)</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Performing Singular Value Decomposition...&#39;</span><span class="p">)</span>
         <span class="n">U</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">splinalg</span><span class="o">.</span><span class="n">svds</span><span class="p">(</span><span class="n">sparse_Xe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
 
         <span class="c1"># --- Permutation matrix ---</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Computing Permutation matrix...&#39;</span><span class="p">)</span>
+
         <span class="c1"># Create first row of matrix: [1, 0, 0, ..., 0]</span>
         <span class="n">fst_row</span> <span class="o">=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">lil_matrix</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span> <span class="o">*</span> <span class="n">L</span><span class="p">))</span>
         <span class="n">fst_row</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -422,6 +401,9 @@
 
         <span class="c1"># --- Signal Poles ---</span>
         <span class="c1"># retain only M principle left s. vecs</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Computing signal poles...&#39;</span><span class="p">)</span>
+
         <span class="n">Us</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">]</span>
         <span class="n">U1</span> <span class="o">=</span> <span class="n">Us</span><span class="p">[:</span><span class="n">Us</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">L</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># last L rows deleted</span>
         <span class="n">U2</span> <span class="o">=</span> <span class="n">Us</span><span class="p">[</span><span class="n">L</span><span class="p">:,</span> <span class="p">:]</span>                <span class="c1"># first L rows deleted</span>
@@ -430,12 +412,15 @@
         <span class="n">U1p</span> <span class="o">=</span> <span class="n">Usp</span><span class="p">[:</span><span class="n">Usp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">K</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># last K rows deleted</span>
         <span class="n">U2p</span> <span class="o">=</span> <span class="n">Usp</span><span class="p">[</span><span class="n">K</span><span class="p">:,</span> <span class="p">:]</span>                 <span class="c1"># first K rows deleted</span>
         <span class="n">eig_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">nlinalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">vec_y</span><span class="p">,</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">U1p</span><span class="p">))</span> <span class="o">@</span> <span class="n">U2p</span> <span class="o">@</span> <span class="n">vec_y</span><span class="p">)</span>
-        <span class="n">poles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">eig_y</span><span class="p">,</span> <span class="n">eig_z</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+        <span class="n">poles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">eig_y</span><span class="p">,</span> <span class="n">eig_z</span><span class="p">))</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">))</span>
 
         <span class="c1"># --- Complex Amplitudes ---</span>
-        <span class="n">ZL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
-        <span class="n">ZR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N2</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="n">Yd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Computing complex amplitudes...&#39;</span><span class="p">)</span>
+
+        <span class="n">ZL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">ZR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N2</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">Yd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">poles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
         <span class="n">EL</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">ZL</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
@@ -447,19 +432,85 @@
 
         <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">EL</span><span class="p">)</span> <span class="o">@</span> <span class="n">Xe</span> <span class="o">@</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">ER</span><span class="p">))</span>
 
-        <span class="c1"># --- Extract parameters ---</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="p">,</span>  <span class="c1"># amp</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">alpha</span><span class="p">)),</span>  <span class="c1"># phase</span>
-            <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]))</span>
-             <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>  <span class="c1"># freq 1</span>
-            <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
-             <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>  <span class="c1"># freq 2</span>
-            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])),</span>  <span class="c1"># damp 1</span>
-            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">poles</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])),</span>  <span class="c1"># damp 2</span>
-        <span class="p">)))</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_params</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">poles</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">norm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remove_negative_damping</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])]</span></div></div>
+<div class="viewcode-block" id="MatrixPencil._generate_params"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil._generate_params">[docs]</a>    <span class="k">def</span> <span class="nf">_generate_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">poles</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts complex amplitude and signal pole arrays into a</span>
+<span class="sd">        parameter array.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        alpha : numpy.ndarray</span>
+<span class="sd">            Complex amplitude array, of shape``(self.M,)``</span>
+
+
+<span class="sd">        poles: numpy.ndarray</span>
+<span class="sd">            Signal pole array, of shape ``(self.dim, self.M)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        result : numpy.ndarray</span>
+<span class="sd">            Parameter array, of shape ``(self.M, 2 * self.dim + 2)``</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">phase</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">alpha</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
+            <span class="nb">tuple</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">poles</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                  <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)])</span>
+        <span class="p">)</span>
+        <span class="n">damp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span>
+            <span class="nb">tuple</span><span class="p">([</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">poles</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)])</span>
+        <span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">amp</span><span class="p">,</span> <span class="n">phase</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="n">damp</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])]</span></div>
+
+<div class="viewcode-block" id="MatrixPencil._remove_negative_damping"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil._remove_negative_damping">[docs]</a>    <span class="k">def</span> <span class="nf">_remove_negative_damping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines whether any oscillators possess negative amplitudes,</span>
+<span class="sd">        and remove these from the parameter array.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        params : numpy.ndarray</span>
+<span class="sd">            Parameter array, with shape ``(self.M, 2 * self.dim + 2)``</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ud_params : numpy.ndarray</span>
+<span class="sd">            Updated parameter array, with negative damping oscillators removed,</span>
+<span class="sd">            with shape ``(M_new, 2 * self.dim + 2)``, where</span>
+<span class="sd">            ``M_new &lt;= self.M``.</span>
+
+<span class="sd">        M : int</span>
+<span class="sd">            Number of oscillators after removal of negative damping</span>
+<span class="sd">            oscillators.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&gt; Checking for oscillators with negative damping...&#39;</span><span class="p">)</span>
+
+        <span class="n">M_init</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Indices of oscillators with negative damping factors</span>
+        <span class="n">neg_dmp_idx</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)):</span>
+            <span class="n">neg_dmp_idx</span> <span class="o">=</span> <span class="n">neg_dmp_idx</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">params</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="n">ud_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">neg_dmp_idx</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">ud_params</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">M</span> <span class="o">&lt;</span> <span class="n">M_init</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="si">{</span><span class="n">cols</span><span class="o">.</span><span class="n">OR</span><span class="si">}</span><span class="s1">WARNING: Oscillations with negative damping</span><span class="se">\n</span><span class="s1">&#39;</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">factors detected. These have been deleted.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                  <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">Corrected number of oscillations: </span><span class="si">{</span><span class="n">M</span><span class="si">}{</span><span class="n">cols</span><span class="o">.</span><span class="n">END</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">None found&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ud_params</span><span class="p">,</span> <span class="n">M</span></div></div>
 </pre></div>
 
             <div class="clearer"></div>
