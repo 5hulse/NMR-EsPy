@@ -313,8 +313,6 @@
         <span class="c1">#     raise PhaseVarianceAmbiguityError(mode)</span>
 
         <span class="c1"># --- Create attributes ------------------------------------------</span>
-        <span class="c1"># Reshape parameter array to vector:</span>
-        <span class="c1"># (M, 4) -&gt; (4*M,) or (M, 6) -&gt; (6*M,)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">theta0</span> <span class="o">=</span> <span class="n">theta0</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">sw</span> <span class="o">=</span> <span class="n">sw</span>
@@ -365,19 +363,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">normed_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span>
 
-        <span class="c1"># Vectorise the initial parameter array</span>
+        <span class="c1"># Reshape parameter array to vector:</span>
+        <span class="c1"># (M, 4) -&gt; (4*M,) or (M, 6) -&gt; (6*M,)</span>
         <span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta0</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s1">&#39;F&#39;</span><span class="p">)</span>
+
         <span class="c1"># Perform some tweaks to regularise x0:</span>
         <span class="c1"># 1. Divide amplitudes by the norm of the data</span>
         <span class="n">x0</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span>
         <span class="c1"># 2. Shift oscillator frequencies to center about 0</span>
         <span class="n">x0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shift_offset</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">)</span>
+
         <span class="c1"># Time points in each dimension</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tp</span> <span class="o">=</span> <span class="n">get_timepoints</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_point</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tp</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_point</span><span class="p">:]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tp</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tp</span> <span class="o">=</span> <span class="n">get_timepoints</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw</span><span class="p">)</span>
 
         <span class="c1"># Determine &#39;active&#39; and &#39;passive&#39; parameters based on self.mode</span>
         <span class="c1"># generates self.active_idx and self.passive_idx</span>
@@ -523,7 +520,7 @@
             <span class="k">raise</span> <span class="n">InvalidUnitError</span><span class="p">(</span><span class="s1">&#39;hz&#39;</span><span class="p">,</span> <span class="s1">&#39;ppm&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="NonlinearProgramming._shift_offset"><a class="viewcode-back" href="../../../references/nlp/nlp.html#nmrespy.nlp.nlp.NonlinearProgramming._shift_offset">[docs]</a>    <span class="k">def</span> <span class="nf">_shift_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">direction</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Shifts frequencies to centre to or displace from 0</span>
+        <span class="sd">&quot;&quot;&quot;Shifts frequencies to center to or displace from 0</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

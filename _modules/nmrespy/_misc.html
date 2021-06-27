@@ -387,8 +387,8 @@
 
 <span class="sd">        conversion : str</span>
 <span class="sd">            A string denoting the coversion to be applied. The form of</span>
-<span class="sd">            `conversion` should be ``&#39;from-&gt;to&#39;``, where ``from`` and ``to``</span>
-<span class="sd">            are not matching, and are one of the following:</span>
+<span class="sd">            `conversion` should be ``&#39;&lt;from&gt;-&gt;&lt;to&gt;&#39;``, where ``&lt;from&gt;`` and</span>
+<span class="sd">            ``&lt;to&gt;`` are not matching, and are each one of the following:</span>
 
 <span class="sd">            * `&#39;idx&#39;`: array index</span>
 <span class="sd">            * `&#39;hz&#39;`: Hertz</span>
@@ -440,7 +440,7 @@
         <span class="k">return</span> <span class="n">converted_lst</span></div>
 
 <div class="viewcode-block" id="FrequencyConverter._check_valid_conversion"><a class="viewcode-back" href="../../references/misc.html#nmrespy._misc.FrequencyConverter._check_valid_conversion">[docs]</a>    <span class="k">def</span> <span class="nf">_check_valid_conversion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conversion</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;check that conversion is a valid value&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Check that conversion is a valid value&quot;&quot;&quot;</span>
         <span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppm&#39;</span><span class="p">,</span> <span class="s1">&#39;hz&#39;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">pair</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
