@@ -65,6 +65,7 @@
 <span class="kn">from</span> <span class="nn">nmrespy._errors</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">nmrespy._misc</span> <span class="kn">import</span> <span class="n">ArgumentChecker</span><span class="p">,</span> <span class="n">PathManager</span><span class="p">,</span> <span class="n">significant_figures</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="n">GITHUBLINK</span><span class="p">)</span>
 
 <div class="viewcode-block" id="write_result"><a class="viewcode-back" href="../../references/write.html#nmrespy.write.write_result">[docs]</a><span class="k">def</span> <span class="nf">write_result</span><span class="p">(</span>
     <span class="n">parameters</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;./nmrespy_result&#39;</span><span class="p">,</span> <span class="n">sfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">integrals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -364,7 +365,7 @@
             <span class="s2">&quot;&lt;no papers yet...&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="s2">&quot;For more information, visit the GitHub repo:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">GITHUBLINK</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">msg</span> <span class="o">+=</span> <span class="n">GITHUBLINK</span>
     <span class="c1"># Save message to textfile</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>

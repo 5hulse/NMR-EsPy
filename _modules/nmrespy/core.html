@@ -82,12 +82,8 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    source : {&#39;bruker_fid&#39;, &#39;bruker_pdata&#39;, &#39;synthetic&#39;}</span>
-<span class="sd">        The type of data imported. `&#39;bruker_fid&#39;` indicates the data is</span>
-<span class="sd">        derived from a FID file (`fid` for 1D data, `ser` for 2D data).</span>
-<span class="sd">        `&#39;bruker_pdata&#39;` indicates the data is derived from files found</span>
-<span class="sd">        in a `pdata` directory (`1r` for 1D data; `2rr` for 2D data).</span>
-<span class="sd">        `&#39;synthetic&#39;` indicates that the data is synthetic.</span>
+<span class="sd">    source : {&#39;bruker&#39;, &#39;synthetic&#39;}</span>
+<span class="sd">        The type of data imported.</span>
 
 <span class="sd">    data : numpy.ndarray</span>
 <span class="sd">        The data associated with the binary file in `path`.</span>
@@ -237,11 +233,26 @@
 
         <span class="n">origin</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;new_bruker&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="nb">locals</span><span class="p">()}</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">load_bruker</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">ask_convdta</span><span class="o">=</span><span class="n">ask_convdta</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;dtype&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;pdata&#39;</span><span class="p">:</span>
+            <span class="c1"># TODO: believe this should be fine for 1D. Need to check for</span>
+            <span class="c1"># multidim spectra.</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">sig</span><span class="o">.</span><span class="n">ift</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">flip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">]):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)]</span>
+            <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;dim&#39;</span><span class="p">])</span>
 
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;directory&#39;</span><span class="p">],</span>
-            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;sweep_width&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;transmitter_frequency&#39;</span><span class="p">],</span>
-            <span class="n">info</span><span class="p">[</span><span class="s1">&#39;nuclei&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;binary_format&#39;</span><span class="p">],</span> <span class="n">_origin</span><span class="o">=</span><span class="n">origin</span>
+            <span class="n">source</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">],</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">path</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span>
+            <span class="n">sw</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sw&#39;</span><span class="p">],</span>
+            <span class="n">off</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;off&#39;</span><span class="p">],</span>
+            <span class="n">sfo</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfo&#39;</span><span class="p">],</span>
+            <span class="n">nuc</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;nuc&#39;</span><span class="p">],</span>
+            <span class="n">fmt</span><span class="o">=</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;binfmt&#39;</span><span class="p">],</span>
+            <span class="n">_origin</span><span class="o">=</span><span class="n">origin</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Estimator.from_pickle"><a class="viewcode-back" href="../../references/core.html#nmrespy.core.Estimator.from_pickle">[docs]</a>    <span class="nd">@classmethod</span>

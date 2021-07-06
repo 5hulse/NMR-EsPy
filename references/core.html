@@ -81,11 +81,7 @@ to use one of these.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>source</strong> (<em>{'bruker_fid'</em><em>, </em><em>'bruker_pdata'</em><em>, </em><em>'synthetic'}</em>) – The type of data imported. <cite>‘bruker_fid’</cite> indicates the data is
-derived from a FID file (<cite>fid</cite> for 1D data, <cite>ser</cite> for 2D data).
-<cite>‘bruker_pdata’</cite> indicates the data is derived from files found
-in a <cite>pdata</cite> directory (<cite>1r</cite> for 1D data; <cite>2rr</cite> for 2D data).
-<cite>‘synthetic’</cite> indicates that the data is synthetic.</p></li>
+<li><p><strong>source</strong> (<em>{'bruker'</em><em>, </em><em>'synthetic'}</em>) – The type of data imported.</p></li>
 <li><p><strong>data</strong> (<em>numpy.ndarray</em>) – The data associated with the binary file in <cite>path</cite>.</p></li>
 <li><p><strong>path</strong> (<em>pathlib.Path</em><em> or </em><em>None</em>) – The path to the directory contaioning the NMR data.</p></li>
 <li><p><strong>sw</strong> (<em>[</em><em>float</em><em>] or </em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em>) – The experiment sweep width in each dimension (Hz).</p></li>
