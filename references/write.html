@@ -147,10 +147,10 @@ Generate equivalent titles for LaTeX.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>- float</strong> (<em>value</em>) – Value to convert.</p></li>
-<li><p><strong>- int</strong><strong> or </strong><strong>None</strong> (<em>sig_figs</em>) – Number of significant figures.</p></li>
-<li><p><strong>-</strong><strong> (</strong><strong>int</strong> (<em>sci_lims</em>) – Bounds defining thresholds for using scientific notation.</p></li>
-<li><p><strong>or None</strong> (<em>int</em><em>)</em>) – Bounds defining thresholds for using scientific notation.</p></li>
+<li><p><strong>float</strong> (<em>value -</em>) – Value to convert.</p></li>
+<li><p><strong>None</strong> (<em>int</em><em>) </em><em>or</em>) – Number of significant figures.</p></li>
+<li><p><strong>(</strong><strong>int</strong> (<em>sci_lims -</em>) – Bounds defining thresholds for using scientific notation.</p></li>
+<li><p><strong>None</strong> – Bounds defining thresholds for using scientific notation.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -415,7 +415,7 @@ will need to successfully compile the generated .tex file:</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -447,7 +447,7 @@ will need to successfully compile the generated .tex file:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Simon Hulse &amp; Mohammadali Foroozandeh.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.1.
     </div>
   </body>
 </html>

@@ -1122,7 +1122,7 @@
         <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">trim</span><span class="p">]</span>
 
         <span class="n">mpm_info</span> <span class="o">=</span> <span class="n">MatrixPencil</span><span class="p">(</span>
-            <span class="n">data</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sfo</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">fprint</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">sfo</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sfo</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">fprint</span><span class="o">=</span><span class="n">fprint</span>
         <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="n">mpm_info</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
@@ -1726,7 +1726,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -1752,7 +1752,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Simon Hulse &amp; Mohammadali Foroozandeh.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.1.
     </div>
   </body>
 </html>

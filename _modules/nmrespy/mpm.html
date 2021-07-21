@@ -120,7 +120,8 @@
 <span class="sd">       55.2 (2007), pp. 718–724.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MatrixPencil.__init__"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fprint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="MatrixPencil.__init__"><a class="viewcode-back" href="../../references/mpm.html#nmrespy.mpm.MatrixPencil.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">sw</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sfo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">start_point</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fprint</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks validity of inputs, and if valid, calls :py:meth:`_mpm`&quot;&quot;&quot;</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -135,10 +136,14 @@
         <span class="k">if</span> <span class="n">offset</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">offset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span>
 
+        <span class="k">if</span> <span class="n">start_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">start_point</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span>
+
         <span class="n">components</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">sw</span><span class="p">,</span> <span class="s1">&#39;sw&#39;</span><span class="p">,</span> <span class="s1">&#39;float_list&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">,</span> <span class="s1">&#39;float_list&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">start_point</span><span class="p">,</span> <span class="s1">&#39;start_point&#39;</span><span class="p">,</span> <span class="s1">&#39;int_list&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="s1">&#39;positive_int_or_zero&#39;</span><span class="p">),</span>
             <span class="p">(</span><span class="n">fprint</span><span class="p">,</span> <span class="s1">&#39;fprint&#39;</span><span class="p">,</span> <span class="s1">&#39;bool&#39;</span><span class="p">),</span>
         <span class="p">]</span>
@@ -148,13 +153,8 @@
 
         <span class="n">ArgumentChecker</span><span class="p">(</span><span class="n">components</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">locals</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sw</span> <span class="o">=</span> <span class="n">sw</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">offset</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sfo</span> <span class="o">=</span> <span class="n">sfo</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">M</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fprint</span> <span class="o">=</span> <span class="n">fprint</span>
 
         <span class="k">if</span> <span class="n">sfo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">converter</span> <span class="o">=</span> <span class="n">FrequencyConverter</span><span class="p">(</span>
@@ -309,8 +309,9 @@
 
         <span class="c1"># Pseudoinverse of Vandermonde matrix of poles multiplied by</span>
         <span class="c1"># vector of complex amplitudes</span>
+        <span class="n">sp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="n">nlinalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">poles</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="n">sp</span><span class="p">))</span>
         <span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">normed_data</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_params</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">poles</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">)))</span>
@@ -523,7 +524,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -549,7 +550,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Simon Hulse &amp; Mohammadali Foroozandeh.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.1.
     </div>
   </body>
 </html>
